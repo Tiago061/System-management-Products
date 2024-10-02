@@ -1,12 +1,33 @@
-package com.sistema_de_cadastro.domain;
+package com.sistema_de_cadastro.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+@Entity
 public class RegisterProduct {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @NotNull
     private String name;
-    private String batch;
-    private Date validity;
-    private String supplier;
+    private String batch; //lote
+    @Basic
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date validity; //validade
+    private String supplier; //fornecedor
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
