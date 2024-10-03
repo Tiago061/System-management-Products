@@ -1,9 +1,6 @@
 package com.sistema_de_cadastro.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -11,25 +8,31 @@ import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.br.CPF;
 
 @Entity
-public class RegisterUser {
+@Table(name = "Client")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(nullable = false)
     private Long id;
     @NotNull
+    @Column(nullable = false)
     private String name;
     @NotNull
+    @Column(nullable = false)
     private String lastName;
     @Email(message = "Email inválido")
+    @NotEmpty(message = "O email deve ser informado")
+    @Column(nullable = false, unique = true)
     private String email;
-    @NotNull
-    @Size(min = 6, message = "O nome deve ter no mínimo 3 caracteres")
-    private String login;
 
     @NotEmpty(message = "A senha deve ser informada")
-    @Size(min = 10, message = "A senha deve ter no mínimo 3 caracteres")
+    @Size(min = 10, message = "A senha deve ter no mínimo 10 caracteres")
+    @Column(nullable = false, unique = true)
     private String password;
     @CPF(message = "CPF inválido")
+    @NotEmpty(message = "O CPF deve ser informado")
+    @Column(nullable = false, unique = true)
     private String cpf;
 
     public Long getId() {
@@ -62,14 +65,6 @@ public class RegisterUser {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
     }
 
     public String getPassword() {

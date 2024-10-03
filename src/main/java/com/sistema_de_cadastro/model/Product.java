@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import java.util.Date;
 
 @Entity
-public class RegisterProduct {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

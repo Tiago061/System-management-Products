@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sucess</title>
+</head>
+<body>
+<!-- Mensagem de Sucesso -->
+<div th:if="${#request.parameterMap.containsKey('success')}">
+  <p>Usuário cadastrado com sucesso!</p>
+</div>
+</body>
+</html>
